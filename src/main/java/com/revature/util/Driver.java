@@ -12,31 +12,31 @@ public class Driver {
 //		s.close();
 		//testing daos
 		
-		User u1 = new User("cindy", "password", "cindy peng");
-		User u2 = new User("mindy", "password", "mindy cheng");
-		User u3 = new User("chris", "password", "chris perry");
-		User u4 = new User("chris", "password", "chris perry");
+//		User u1 = new User("cindy", "password", "cindy peng");
+//		User u2 = new User("mindy", "password", "mindy cheng");
+//		User u3 = new User("chris", "password", "chris perry");
+//		User u4 = new User("chris", "password", "chris perry");
 		
-		UserDao ud = new UserDaoImpl();
+//		UserDao ud = new UserDaoImpl();
 //insertion testing 
-		ud.createUser(u1);
-		ud.createUser(u2);
-		ud.createUser(u3);
-		ud.createUser(u4);
+//		ud.createUser(u1);
+//		ud.createUser(u2);
+//		ud.createUser(u3);
+//		ud.createUser(u4);
 		
 //get by id testing 
-		User uUpdate = ud.getUserById(1);
-		System.out.println(uUpdate);
+//		User uUpdate = ud.getUserById(1);
+//		System.out.println(uUpdate);
 		
 //update testing
-		uUpdate.setName("peng cindy is UPDATED!!!!!");
-		ud.updateUser(uUpdate);
+//		uUpdate.setName("peng cindy is UPDATED!!!!!");
+//		ud.updateUser(uUpdate);
 
 //list users testing 
-		System.out.println(ud.getUsers());
+//		System.out.println(ud.getUsers());
 		
 //delete user by id testing 
-		ud.deleteUserById(4);
+//		ud.deleteUserById(4);
 		
 	}
 

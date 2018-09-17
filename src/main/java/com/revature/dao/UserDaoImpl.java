@@ -2,6 +2,8 @@ package com.revature.dao;
 
 import java.util.List;
 
+import javax.persistence.*;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

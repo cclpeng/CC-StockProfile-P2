@@ -11,8 +11,13 @@ public class StockTransaction {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="transactionSequence")
-	@SequenceGenerator(name="bearSequence", allocationSize =1, sequenceName = "SQ_TRANSACTION_PK")
+	@SequenceGenerator(name="transactionSequence", allocationSize =1, sequenceName = "SQ_TRANSACTION_PK")
+	@Column(name = "STOCK_ID")
 	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name = "USER_ID")
+	private User user;
 	
 	@Column(name = "STOCK_SYMBOL")
 	private String stockSymbol;
@@ -38,17 +43,17 @@ public class StockTransaction {
 	@Column(name = "TOTAL_RETURN")
 	private BigDecimal totalReturn;
 	
-	@Column(name = "DATE")
+	@Column(name = "TRANSACTION_DATE")
 	private Date date;
 
 	public StockTransaction() {
 		super();
 	}
 
-	public StockTransaction(int id, String stockSymbol, String stockName, int numShares, float openPrice, float currentPrice,
+	public StockTransaction(User user, String stockSymbol, String stockName, int numShares, float openPrice, float currentPrice,
 			float boughtFor, float sellingFor, BigDecimal totalReturn, Date date) {
 		super();
-		this.id = id;
+		this.user = user;
 		this.stockSymbol = stockSymbol;
 		this.stockName = stockName;
 		this.numShares = numShares;
@@ -66,6 +71,14 @@ public class StockTransaction {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getStockSymbol() {

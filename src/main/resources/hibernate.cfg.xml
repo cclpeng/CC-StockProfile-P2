@@ -5,15 +5,29 @@
 		
 	<hibernate-configuration>
 	<session-factory>
+<<<<<<< HEAD
 		<property name = "hibernate.connection.url">jdbc:oracle:thin:@cireydbi.cc9h9npjasot.us-east-1.rds.amazonaws.com:1521:ORCL</property>
 		<property name = "hibernate.connection.username">CFrancis95</property>
 		<property name = "hibernate.connection.password">Wallofdoom2</property>
 		<property name = "hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
 		<property name = "hibernate.hbm2ddl.auto">create</property>
 		<property name = "hibernate.show_sql">true</property>
+=======
+		<property name="hibernate.connection.url">
+			jdbc:oracle:thin:@database2.c4tdrmkmnxdc.us-east-2.rds.amazonaws.com:1521:ORCL
+		</property>
+		<property name="hibernate.connection.username">clpeng</property>
+		<property name="hibernate.connection.password">happiness4</property>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+>>>>>>> 352ffa0d45583c4fe1b71ff4678d9e8e9157d2be
 		
 		
+<<<<<<< HEAD
 		<mapping class = "com.revature.models.StockTransaction"/>
 		<mapping class = "com.revature.models.User"/>
+=======
+		<mapping class="com.revature.models.User"></mapping>
+		<!-- <mapping class="com.revature.models.the other one"/> -->
+>>>>>>> 352ffa0d45583c4fe1b71ff4678d9e8e9157d2be
 	</session-factory>
 </hibernate-configuration>

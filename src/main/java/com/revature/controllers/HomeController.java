@@ -11,11 +11,6 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 public class HomeController {
 	
-//	@GetMapping(value = "/login")
-//	public String getHome() {
-//		return "http://com.revature.cireycindystock.s3-website-us-east-1.amazonaws.com/";
-//	}
-	
 	@GetMapping(value="/login")
 	public RedirectView loginPage() {
 		//hehehhhh  :https://stackoverflow.com/questions/17955777/redirect-to-an-external-url-from-controller-action-in-spring-mvc

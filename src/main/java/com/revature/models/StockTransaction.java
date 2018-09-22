@@ -15,16 +15,16 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-@Component
 @Entity
 @Table
+@Component
 public class StockTransaction {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="transactionSequence")
 	@SequenceGenerator(name="transactionSequence", allocationSize =1, sequenceName = "SQ_TRANSACTION_PK")
 	@Column(name = "STOCK_ID")
-	private int id;
+	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name = "USER_ID")
@@ -76,11 +76,11 @@ public class StockTransaction {
 		this.date = date;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -171,13 +171,14 @@ public class StockTransaction {
 		result = prime * result + Float.floatToIntBits(boughtFor);
 		result = prime * result + Float.floatToIntBits(currentPrice);
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + numShares;
 		result = prime * result + Float.floatToIntBits(openPrice);
 		result = prime * result + Float.floatToIntBits(sellingFor);
 		result = prime * result + ((stockName == null) ? 0 : stockName.hashCode());
 		result = prime * result + ((stockSymbol == null) ? 0 : stockSymbol.hashCode());
 		result = prime * result + ((totalReturn == null) ? 0 : totalReturn.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -199,7 +200,10 @@ public class StockTransaction {
 				return false;
 		} else if (!date.equals(other.date))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (numShares != other.numShares)
 			return false;
@@ -221,6 +225,11 @@ public class StockTransaction {
 			if (other.totalReturn != null)
 				return false;
 		} else if (!totalReturn.equals(other.totalReturn))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
 			return false;
 		return true;
 	}

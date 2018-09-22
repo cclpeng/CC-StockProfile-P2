@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
 	
-	@GetMapping(value="/home", produces = MediaType.TEXT_PLAIN_VALUE)
-	@ResponseBody
-	public String displayMessage() {
-		return "Hello from our CC Boot App";
+	@GetMapping(value = "/login")
+	public String getHome() {
+		return "http://com.revature.cireycindystock.s3-website-us-east-1.amazonaws.com/";
 	}
 
 }

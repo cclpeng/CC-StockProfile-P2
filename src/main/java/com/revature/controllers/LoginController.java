@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,8 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.revature.services.UserService;
+
 @Controller
-public class HomeController {
+public class LoginController {
+	@Autowired
+	UserService userService;
+	
 	
 	@GetMapping(value="/login")
 	public RedirectView loginPage() {
@@ -20,17 +26,19 @@ public class HomeController {
 	}
 	
 	@PostMapping(value="/login", consumes=MediaType.TEXT_PLAIN_VALUE, produces=MediaType.TEXT_PLAIN_VALUE)
-	public RedirectView loginValidationRedirection(@RequestBody String username, @RequestBody String password)
+	@ResponseBody
+//	public RedirectView loginValidationRedirection(@RequestBody String username, @RequestBody String password)
+	public String loginValidationRedirection(@RequestBody String username, @RequestBody String password)
 	{
 		RedirectView redirectView = new RedirectView();
-		System.out.println(username); //see if we can get those params :DD
 		//set up a session with those params
-		if(username.equals("cindy") && password.equals("pass"))
-//	    redirectView.setUrl("http://com.revature.cireycindystock.s3-website-us-east-1.amazonaws.com/home");
-			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/home");
-		else
-			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/login");
-		return redirectView;
+//		if(username.equals("cindy") && password.equals("pass"))
+//			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/home");
+//		else
+//			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/login");
+//		return redirectView;
+		
+		return "";
 	}
 	
 }

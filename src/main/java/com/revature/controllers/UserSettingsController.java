@@ -32,6 +32,8 @@ public class UserSettingsController {
 	//not quite sure how to link to the form on the front end side however
 	@PostMapping(consumes="application/json", produces="application/json")
 	public String changePassword(@RequestBody ChangeSettingsForm form) { 
+		
+		
 		User u = userService.verifyUser(form.getUsername(), form.getOldPassword());
 		if( u != null && (form.getNewPassword().equals( form.getConfirmPassword() )) )
 		{

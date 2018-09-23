@@ -1,0 +1,3 @@
+fixing that stupid console thing on the angular side
+Implementing Spring controllers with external url forms...? :(
+	for now just making sure can do the CRUD operations from controller mapping on PostMaster

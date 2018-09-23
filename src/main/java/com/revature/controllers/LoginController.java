@@ -31,24 +31,10 @@ public class LoginController {
 	    return redirectView;
 	}
 	
-//	@PostMapping(value="/login", params= {"username", "password"})
-//	public RedirectView loginValidationRedirection(@RequestParam("username") String userN, 
-//												   @RequestParam("password") String passW)
-//	{
-//		RedirectView redirectView = new RedirectView();
-//		User user = userService.loginUser(userN, passW); 
-//		if(user != null)
-//			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/home");
-//		else
-//			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/login");
-//		return redirectView;
-//		
-//	}
 	@PostMapping(consumes="application/json", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public User loginValidationRedirection(@RequestBody LoginForm loginForm)
 	{
-		
 		RedirectView redirectView = new RedirectView();
 		User user = userService.verifyUser(loginForm.getUsername(), loginForm.getPassword()); 
 		if(user != null) 

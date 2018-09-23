@@ -1,19 +1,18 @@
-package com.revature.models;
+package com.revature.models.forms;
 
-import org.springframework.stereotype.Component;
-
-public class LoginTry {
+public class LoginForm {
 	private String username;
 	private String password;
-	public LoginTry() {
+	
+	public LoginForm() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public LoginTry(String username, String password) {
+	public LoginForm(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
 	}
+	
 	public String getUsername() {
 		return username;
 	}
@@ -46,7 +45,7 @@ public class LoginTry {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LoginTry other = (LoginTry) obj;
+		LoginForm other = (LoginForm) obj;
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -59,6 +58,7 @@ public class LoginTry {
 			return false;
 		return true;
 	}
+	
 	
 	
 }

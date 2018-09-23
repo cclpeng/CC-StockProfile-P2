@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.revature.models.LoginTry;
 import com.revature.models.User;
+import com.revature.models.forms.LoginForm;
 import com.revature.services.UserService;
 
 @Controller
@@ -42,7 +42,7 @@ public class LoginController {
 //		
 //	}
 	@PostMapping(value="/login", consumes="application/json", produces=MediaType.APPLICATION_JSON_VALUE)
-	public RedirectView loginValidationRedirection(@RequestBody LoginTry loginForm)
+	public RedirectView loginValidationRedirection(@RequestBody LoginForm loginForm)
 	{
 		
 		RedirectView redirectView = new RedirectView();

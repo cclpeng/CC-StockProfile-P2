@@ -1,12 +1,12 @@
 package com.revature.controllers;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.revature.models.LoginTry;
@@ -14,12 +14,13 @@ import com.revature.models.User;
 import com.revature.services.UserService;
 
 @Controller
+@RequestMapping("/login")
 public class LoginController {
+	
 	@Autowired
 	UserService userService;
-//	private static Logger log = Logger.getRootLogger();
 	
-	@GetMapping(value="/login")
+	@GetMapping
 	public RedirectView loginPage() {
 		//hehehhhh  :https://stackoverflow.com/questions/17955777/redirect-to-an-external-url-from-controller-action-in-spring-mvc
 		RedirectView redirectView = new RedirectView();

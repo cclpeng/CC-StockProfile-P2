@@ -46,7 +46,7 @@ public class LoginController {
 	{
 		
 		RedirectView redirectView = new RedirectView();
-		User user = userService.loginUser(loginForm.getUsername(), loginForm.getPassword()); 
+		User user = userService.verifyUser(loginForm.getUsername(), loginForm.getPassword()); 
 		if(user != null) 
 			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/home");
 		else

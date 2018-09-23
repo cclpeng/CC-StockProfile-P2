@@ -1,0 +1,5 @@
+2018-09-23 07:47:43 INFO  root:13 - yo
+2018-09-23 07:48:16 INFO  root:13 - yo
+2018-09-23 07:49:39 INFO  root:13 - yo
+2018-09-23 07:49:56 INFO  root:27 - get redirection for login
+2018-09-23 08:40:02 INFO  root:13 - yo

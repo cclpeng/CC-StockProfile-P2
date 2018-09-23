@@ -39,8 +39,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void loginUser(String username, String password) {
-		// TODO Auto-generated method stub
+	public User loginUser(String username, String password) {
+		return userRepo.findUserByUserNAndPassW(username, password);
 		
 	}
 }

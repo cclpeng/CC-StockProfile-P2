@@ -1,11 +1,13 @@
 package com.revature.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -25,20 +27,12 @@ public class LoginController {
 	    return redirectView;
 	}
 	
-	@PostMapping(value="/login", consumes=MediaType.TEXT_PLAIN_VALUE, produces=MediaType.TEXT_PLAIN_VALUE)
+//	@PostMapping(value="/login", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/login", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-//	public RedirectView loginValidationRedirection(@RequestBody String username, @RequestBody String password)
-	public String loginValidationRedirection(@RequestBody String username, @RequestBody String password)
+	public String loginValidationRedirection(HttpServletRequest request, HttpServletResponse response)
 	{
-		RedirectView redirectView = new RedirectView();
-		//set up a session with those params
-//		if(username.equals("cindy") && password.equals("pass"))
-//			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/home");
-//		else
-//			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/login");
-//		return redirectView;
-		
-		return "";
+		return "Hello!!!";
 	}
 	
 }

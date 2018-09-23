@@ -1,23 +1,23 @@
 package com.revature.controllers;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.revature.models.LoginTry;
+import com.revature.models.User;
 import com.revature.services.UserService;
 
 @Controller
 public class LoginController {
 	@Autowired
 	UserService userService;
-	
+//	private static Logger log = Logger.getRootLogger();
 	
 	@GetMapping(value="/login")
 	public RedirectView loginPage() {
@@ -27,12 +27,30 @@ public class LoginController {
 	    return redirectView;
 	}
 	
-//	@PostMapping(value="/login", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	@PostMapping(value="/login", produces=MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public String loginValidationRedirection(HttpServletRequest request, HttpServletResponse response)
+//	@PostMapping(value="/login", params= {"username", "password"})
+//	public RedirectView loginValidationRedirection(@RequestParam("username") String userN, 
+//												   @RequestParam("password") String passW)
+//	{
+//		RedirectView redirectView = new RedirectView();
+//		User user = userService.loginUser(userN, passW); 
+//		if(user != null)
+//			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/home");
+//		else
+//			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/login");
+//		return redirectView;
+//		
+//	}
+	@PostMapping(value="/login", consumes="application/json", produces=MediaType.APPLICATION_JSON_VALUE)
+	public RedirectView loginValidationRedirection(@RequestBody LoginTry loginForm)
 	{
-		return "Hello!!!";
+		
+		RedirectView redirectView = new RedirectView();
+		User user = userService.loginUser(loginForm.getUsername(), loginForm.getPassword()); 
+		if(user != null) 
+			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/home");
+		else
+			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/login");
+		return redirectView;
 	}
 	
 }

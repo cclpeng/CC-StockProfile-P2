@@ -63,6 +63,7 @@
   			<artifactId>hibernate-core</artifactId>
   			<version>4.3.11.FINAL</version>
   		</dependency>-->
+  		
 	</dependencies>
   
 </project>

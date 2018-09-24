@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import com.revature.services.StockTransactionService;
 
 @RestController
 @RequestMapping("/stockTransactions")
+@CrossOrigin
 public class StockTransactionController {
 	
 	@Autowired
@@ -40,7 +42,6 @@ public class StockTransactionController {
 	}
 	
 	@PutMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	//@ResponseBody
 	public StockTransaction updateUser(@RequestBody StockTransaction s) {
 		return stockService.updateStockTransaction(s);
 	}

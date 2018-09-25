@@ -17,9 +17,9 @@ import com.revature.models.User;
 import com.revature.models.forms.LoginForm;
 import com.revature.services.UserService;
 
+@CrossOrigin("http://localhost:8080/login")
 @RestController
 @RequestMapping("/login")
-@CrossOrigin
 public class LoginController {
 	
 	@Autowired

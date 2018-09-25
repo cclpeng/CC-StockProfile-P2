@@ -1,14 +1,16 @@
 package com.revature.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.revature.models.User;
@@ -16,7 +18,7 @@ import com.revature.models.forms.LoginForm;
 import com.revature.services.UserService;
 
 @CrossOrigin("http://localhost:8080/login")
-@Controller
+@RestController
 @RequestMapping("/login")
 public class LoginController {
 	
@@ -31,21 +33,18 @@ public class LoginController {
 	    return redirectView;
 	}
 	
-	@PostMapping(consumes="application/json")
-//	@ResponseBody
-	public RedirectView loginValidationRedirection(@RequestBody LoginForm loginForm)
+	@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public User loginValidationRedirection(@RequestBody LoginForm loginForm, HttpServletRequest request)
 	{
-		RedirectView redirectView = new RedirectView();
-		User user = userService.verifyUser(loginForm.getUsername(), loginForm.getPassword()); 
-		
-//		return loginForm.getUsername() + loginForm.getPassword();
-		if(user != null) 
-			//now set up sessions...
-			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/home");
-		else
-			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/login");
-		return redirectView;
-//		return user;
+		User user = userService.verifyUser(loginForm.getUsername(), loginForm.getPassword());
+		if(user != null)
+		{
+			HttpSession s = request.getSession();
+			s.setAttribute("userN", user.getUserN());
+			s.setAttribute("passW", user.getPassW());
+			s.setAttribute("name", user.getName());
+		}
+		return user;
 	}
 	
 }

@@ -15,7 +15,7 @@ import com.revature.models.User;
 import com.revature.models.forms.LoginForm;
 import com.revature.services.UserService;
 
-@CrossOrigin
+@CrossOrigin("http://localhost:8080/login")
 @Controller
 @RequestMapping("/login")
 public class LoginController {
@@ -31,18 +31,21 @@ public class LoginController {
 	    return redirectView;
 	}
 	
-	@PostMapping(consumes="application/json", produces=MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public User loginValidationRedirection(@RequestBody LoginForm loginForm)
+	@PostMapping(consumes="application/json")
+//	@ResponseBody
+	public RedirectView loginValidationRedirection(@RequestBody LoginForm loginForm)
 	{
 		RedirectView redirectView = new RedirectView();
 		User user = userService.verifyUser(loginForm.getUsername(), loginForm.getPassword()); 
+		
+//		return loginForm.getUsername() + loginForm.getPassword();
 		if(user != null) 
 			//now set up sessions...
 			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/home");
 		else
 			redirectView.setUrl("http://cc-stockprofile-p2.com.s3-website-us-east-1.amazonaws.com/login");
-		return user;
+		return redirectView;
+//		return user;
 	}
 	
 }

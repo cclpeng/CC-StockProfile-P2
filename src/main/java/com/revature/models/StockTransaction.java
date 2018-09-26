@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table
+@Table(name="STOCK_TRANSACTIONS")
 @Component
 public class StockTransaction {
 	

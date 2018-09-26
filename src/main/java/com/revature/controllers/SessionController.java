@@ -27,7 +27,7 @@ public class SessionController {
 		HttpSession s = request.getSession(false);
 		if(s == null) {
 			String[] array = new String[3];
-			array[0] = "heyy";
+			array[0] = "nooo";
 			array[1] = "badd";
 			array[2] = "sessionn";
 			System.out.println("Went to GET /sessions. BUT NO SESSION :(");
@@ -43,7 +43,7 @@ public class SessionController {
 		HttpSession s = request.getSession(false);
 		if(s == null) {
 			String[] array = new String[3];
-			array[0] = "hey";
+			array[0] = "nooo";
 			array[1] = "bad";
 			array[2] = "session";
 			System.out.println("Went to GET /sessions. BUT NO SESSION :(");

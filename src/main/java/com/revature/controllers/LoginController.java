@@ -57,6 +57,7 @@ public class LoginController {
 			s.setAttribute("passW", user.getPassW());
 			s.setAttribute("name", user.getName());  
 			//
+			System.out.println(s.getId());
 			//testing the session
 			System.out.println("-    -   -     SESSION SET   -    -    -");
 			System.out.println(s.getAttribute("userN"));

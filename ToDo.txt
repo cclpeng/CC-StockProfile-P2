@@ -1,3 +1,17 @@
 fixing that stupid console thing on the angular side
-Implementing Spring controllers with external url forms...? :(
-	for now just making sure can do the CRUD operations from controller mapping on PostMaster
+finish our pages
+quickly add create new user 
+finish pipeline - sonar cube
+write some unit tests -_____-
+
+
+
+
+extra (next day)
+See the user stories for more?
+Branches github .___.
+add a filter searchbar
+make things prettier:
+	fix nav bar (center it?)
+	fix nav bar user link (move it over to the right furthest)
+	put stuff in the home page...

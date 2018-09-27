@@ -36,7 +36,7 @@ public class StockTransactionImpl implements StockTransactionService {
 
 	@Override
 	public StockTransaction deleteStockTransaction(StockTransaction stockTransaction) {
-		stockTransactionRepo.save(stockTransaction);
+		stockTransactionRepo.delete(stockTransaction);
 		return stockTransaction;
 	}
 

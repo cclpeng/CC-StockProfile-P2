@@ -1,17 +1,17 @@
-fixing that stupid console thing on the angular side
-finish our pages
-quickly add create new user 
-finish pipeline - sonar cube
+elastic beanstalk
 write some unit tests -_____-
 
 
 
-
-extra (next day)
-See the user stories for more?
 Branches github .___.
-add a filter searchbar
+See the user stories for more?
+
 make things prettier:
-	fix nav bar (center it?)
-	fix nav bar user link (move it over to the right furthest)
-	put stuff in the home page...
+	drop down nav bar (settings and logout)
+	add a filter searchbar (for the symbols only)
+	
+	all those input validation things (highlight/border the input, send some kind of alert)
+	
+	
+	
+	

@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,13 +48,18 @@ public class StockTransactionController {
 		return stockService.updateStockTransaction(s);
 	}
 	
+	@Transactional
 	@DeleteMapping(value="/{id}", consumes="application/json")
 	public String deleteTransaction(@PathVariable("id") Long id) 
 	{
 		StockTransaction transaction = stockService.getStockTransactionById(id);
-		if(transaction != null)
+		if(transaction != null) {
 			stockService.deleteStockTransaction(transaction);
-		return "Deleted the transaction";
+			return "Deleted the transaction";
+		}
+		
+		return "Didn't delete";
+		
 	}
 	
 	

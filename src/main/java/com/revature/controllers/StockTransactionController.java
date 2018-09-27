@@ -47,10 +47,12 @@ public class StockTransactionController {
 		return stockService.updateStockTransaction(s);
 	}
 	
-	@DeleteMapping(consumes="application/json")
-	public String deleteTransaction(@RequestBody StockTransaction s) 
+	@DeleteMapping(value="/{id}", consumes="application/json")
+	public String deleteTransaction(@PathVariable("id") Long id) 
 	{
-		stockService.deleteStockTransaction(s);
+		StockTransaction transaction = stockService.getStockTransactionById(id);
+		if(transaction != null)
+			stockService.deleteStockTransaction(transaction);
 		return "Deleted the transaction";
 	}
 	

@@ -39,41 +39,45 @@ public class StockTransaction {
 	@Column(name = "NUM_SHARES")
 	private int numShares;
 	
-	@Column(name = "OPEN_PRICE")
-	private float openPrice;
+//	@Column(name = "OPEN_PRICE")
+//	private float openPrice;
 	
-	@Column(name = "CURRENT_PRICE")
-	private float currentPrice;
+//	@Column(name = "CURRENT_PRICE")  //these we grab from the api when we need
+//	private float currentPrice;
 	
-	@Column(name = "BOUGHT_FOR")
+	@Column(name = "BOUGHT_FOR")   //bought at the time
 	private float boughtFor;
 	
-	@Column(name = "SELLING_FOR")
+	@Column(name = "SELLING_FOR")  //sold for (NOT THE CURRENT PRICE) ...null until it's sold?
 	private float sellingFor;
 	
-	@Column(name = "TOTAL_RETURN")
-	private BigDecimal totalReturn;
+//	@Column(name = "TOTAL_RETURN")
+//	private BigDecimal totalReturn;
 	
 	@Column(name = "TRANSACTION_DATE")
 	private Date date;
+	
+	@Column(name = "STATUS") //"sold" or "unsold"
+	private String status;
 
 	public StockTransaction() {
 		super();
 	}
 
-	public StockTransaction(User user, String stockSymbol, String stockName, int numShares, float openPrice, float currentPrice,
-			float boughtFor, float sellingFor, BigDecimal totalReturn, Date date) {
+	public StockTransaction(User user, String stockSymbol, String stockName, int numShares,
+			float boughtFor, float sellingFor, Date date, String status) {
 		super();
 		this.user = user;
 		this.stockSymbol = stockSymbol;
 		this.stockName = stockName;
 		this.numShares = numShares;
-		this.openPrice = openPrice;
-		this.currentPrice = currentPrice;
+//		this.openPrice = openPrice;
+//		this.currentPrice = currentPrice;
 		this.boughtFor = boughtFor;
 		this.sellingFor = sellingFor;
-		this.totalReturn = totalReturn;
+//		this.totalReturn = totalReturn;
 		this.date = date;
+		this.status = status;
 	}
 
 	public Long getId() {
@@ -116,21 +120,21 @@ public class StockTransaction {
 		this.numShares = numShares;
 	}
 
-	public float getOpenPrice() {
-		return openPrice;
-	}
+//	public float getOpenPrice() {
+//		return openPrice;
+//	}
+//
+//	public void setOpenPrice(float openPrice) {
+//		this.openPrice = openPrice;
+//	}
 
-	public void setOpenPrice(float openPrice) {
-		this.openPrice = openPrice;
-	}
-
-	public float getCurrentPrice() {
-		return currentPrice;
-	}
-
-	public void setCurrentPrice(float currentPrice) {
-		this.currentPrice = currentPrice;
-	}
+//	public float getCurrentPrice() {
+//		return currentPrice;
+//	}
+//
+//	public void setCurrentPrice(float currentPrice) {
+//		this.currentPrice = currentPrice;
+//	}
 
 	public float getBoughtFor() {
 		return boughtFor;
@@ -148,13 +152,13 @@ public class StockTransaction {
 		this.sellingFor = sellingFor;
 	}
 
-	public BigDecimal getTotalReturn() {
-		return totalReturn;
-	}
-
-	public void setTotalReturn(BigDecimal totalReturn) {
-		this.totalReturn = totalReturn;
-	}
+//	public BigDecimal getTotalReturn() {
+//		return totalReturn;
+//	}
+//
+//	public void setTotalReturn(BigDecimal totalReturn) {
+//		this.totalReturn = totalReturn;
+//	}
 
 	public Date getDate() {
 		return date;
@@ -163,21 +167,34 @@ public class StockTransaction {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	public String getStatus() {
+		return this.status;
+	}
+
+	@Override
+	public String toString() {
+		return "StockTransaction [id=" + id + ", user=" + user + ", stockSymbol=" + stockSymbol + ", stockName="
+				+ stockName + ", numShares=" + numShares + ", boughtFor=" + boughtFor + ", sellingFor=" + sellingFor
+				+ ", date=" + date + ", status=" + status + "]";
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + Float.floatToIntBits(boughtFor);
-		result = prime * result + Float.floatToIntBits(currentPrice);
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + numShares;
-		result = prime * result + Float.floatToIntBits(openPrice);
 		result = prime * result + Float.floatToIntBits(sellingFor);
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((stockName == null) ? 0 : stockName.hashCode());
 		result = prime * result + ((stockSymbol == null) ? 0 : stockSymbol.hashCode());
-		result = prime * result + ((totalReturn == null) ? 0 : totalReturn.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -193,8 +210,6 @@ public class StockTransaction {
 		StockTransaction other = (StockTransaction) obj;
 		if (Float.floatToIntBits(boughtFor) != Float.floatToIntBits(other.boughtFor))
 			return false;
-		if (Float.floatToIntBits(currentPrice) != Float.floatToIntBits(other.currentPrice))
-			return false;
 		if (date == null) {
 			if (other.date != null)
 				return false;
@@ -207,9 +222,12 @@ public class StockTransaction {
 			return false;
 		if (numShares != other.numShares)
 			return false;
-		if (Float.floatToIntBits(openPrice) != Float.floatToIntBits(other.openPrice))
-			return false;
 		if (Float.floatToIntBits(sellingFor) != Float.floatToIntBits(other.sellingFor))
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
 			return false;
 		if (stockName == null) {
 			if (other.stockName != null)
@@ -221,11 +239,6 @@ public class StockTransaction {
 				return false;
 		} else if (!stockSymbol.equals(other.stockSymbol))
 			return false;
-		if (totalReturn == null) {
-			if (other.totalReturn != null)
-				return false;
-		} else if (!totalReturn.equals(other.totalReturn))
-			return false;
 		if (user == null) {
 			if (other.user != null)
 				return false;
@@ -233,12 +246,8 @@ public class StockTransaction {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Transaction [id=" + id + ", stockSymbol=" + stockSymbol + ", stockName=" + stockName + ", numShares="
-				+ numShares + ", openPrice=" + openPrice + ", currentPrice=" + currentPrice + ", boughtFor=" + boughtFor
-				+ ", sellingFor=" + sellingFor + ", totalReturn=" + totalReturn + ", date=" + date + "]";
-	}
+	
+	
+	
 	
 }

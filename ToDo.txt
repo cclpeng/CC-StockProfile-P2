@@ -6,6 +6,8 @@ write some unit tests -_____-
 Branches github .___.
 See the user stories for more?
 
+Lint thing for angular T_T
+
 make things prettier:
 	drop down nav bar (settings and logout)
 	add a filter searchbar (for the symbols only)

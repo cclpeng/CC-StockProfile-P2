@@ -15,7 +15,6 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.controllers.UserSettingsController;
-import com.revature.models.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -34,4 +33,6 @@ public class UserTesting {
 		assertThat(this.restTemplate.getForObject("http://localhost:"+port+"/users", List.class)).isInstanceOf(List.class);
 //																				.isInstanceOf(object);
 	}
+	
+	
 }

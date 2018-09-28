@@ -32,7 +32,7 @@ public class UserSettingsController {
 	
 	//post, create a user
 	@PostMapping(consumes="application/json", produces="application/json")
-	public User createUser(User newUser)
+	public User createUser(@RequestBody User newUser)
 	{
 		return userService.createUser(newUser);
 	}
